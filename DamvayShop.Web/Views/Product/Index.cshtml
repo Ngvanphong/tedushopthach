@@ -1,0 +1,183 @@
+﻿@model DamvayShop.Web.Infrastructure.Core.PaginationClient<DamvayShop.Web.Models.ProductViewModel>
+@{
+    var Category = (DamvayShop.Web.Models.ProductCategoryViewModel)ViewBag.Category;
+    var pageIndex = Model.PageIndex;
+    ViewBag.Title = pageIndex==1? Category.Name:Category.Name+"-trang="+pageIndex;
+    ViewBag.MetaKeyword = pageIndex == 1 ? Category.MetaKeyword : Category.MetaKeyword + "-trang=" + pageIndex;
+    ViewBag.MetaDiscription = pageIndex == 1 ? Category.MetaDiscription : Category.MetaDiscription+ "-trang=" + pageIndex;
+    Layout = "~/Views/Shared/Layouts.cshtml";
+
+    var urlParent = "/" + Category.Alias + ".pc-" + Category.ID + ".html";
+    var sort = (string)ViewBag.Sort;
+}
+@section JavaScriptLayout {
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Assets/client/js/Sort.js"></script>
+
+}
+<div id="all">
+    <div id="content">
+        <div class="container">
+
+            <div class="col-md-12">
+
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/index.html">Home</a>
+                    </li>
+                    <li>@Category.Name</li>
+                </ul>
+
+                <div class="box info-bar">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12  products-number-sort">
+                            <div class="row">
+                                <form class="form-inline">
+                                    <div class="products-sort-by" style="text-align:right;">
+                                        <strong>Sắp xếp</strong>
+                                        <select id="choiceshort" name="sort-by" class="form-control">
+                                            @if (sort == "lasted")
+                                            {
+                                                <option selected value="@urlParent?page=1 &sort=lasted">Mới nhất</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@urlParent?page=1 &sort=lasted">Mới nhất</option>
+                                            }
+                                            @if (sort == "price")
+                                            {
+                                                <option selected value="@urlParent?page=1 &sort=price"> Giá ---></option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@urlParent?page=1 &sort=price"> Giá ---></option>
+                                            }
+                                            @if (sort == "promotion")
+                                            {
+                                                <option selected value="@urlParent?page=1&sort=promotion">Khuyến mãi</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@urlParent?page=1&sort=promotion">Khuyến mãi</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="productSort" class="row products">
+                    @if (@Model.Count > 0)
+                    {
+                        foreach (var item in Model.Items)
+                        {
+                            var url = "/" + item.Alias + ".p-" + item.ID + ".html";
+                            <div class="col-md-3 col-sm-4">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="@url">
+                                                    <img src="@item.ThumbnailImage" alt="@item.Name" class="img-responsive">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="@url" class="invisible">
+                                        <img src="@item.ThumbnailImage" alt="" class="img-responsive">
+                                    </a>
+                                    <div class="text">
+                                        <h3><a href="@url">@item.Name</a></h3>
+                                        @if (item.PromotionPrice.HasValue == true)
+                                        {
+                                            <p class="price"><del>@item.Price</del>@item.PromotionPrice</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="price">@item.Price</p>
+                                        }
+                                      
+                                    </div>
+                                    <!-- /.text -->
+                                    @if (item.PromotionPrice.HasValue == true)
+                                    {
+                                        <div class="ribbon sale">
+                                            <div class="theribbon">SALE</div>
+                                            <div class="ribbon-background"></div>
+                                        </div>
+                                    }
+
+                                    <!-- /.ribbon -->
+
+                                </div>
+                                <!-- /.product -->
+                            </div>
+                        }
+
+                    }
+                    else
+                    {
+                        <div class="text-center"><h3>Không có sản phẩm</h3></div>;
+
+                    }
+
+
+                </div>
+                <!-- /.products -->
+                @if (Model.TotalPage > 1)
+                {
+                    var startPageIndex = Math.Max(1, Model.PageIndex - Model.PageDisplay / 2);
+                    var endPageIndex = Math.Min(Model.TotalPage, Model.PageIndex + Model.PageDisplay / 2);
+                    <div class="pages">
+
+                        <ul class="pagination">
+                            @if (Model.PageIndex > 1)
+                            {
+                                <li>
+                                    <a href="?page=@(Model.PageIndex - 1)&sort=@sort">&laquo;</a>
+                                </li>
+                            }
+
+                            @for (int i = startPageIndex; i <= endPageIndex; i++)
+                            {
+                                if (i == Model.PageIndex)
+                                {
+                                    <li class="active">
+                                        <a href="?page=@i&sort=@sort">@i</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="?page=@i&sort=@sort">@i</a>
+                                    </li>
+                                }
+
+                            }
+
+                            @if (Model.PageIndex < Model.TotalPage)
+                            {
+                                <li>
+                                    <a href="?page=@(Model.PageIndex + 1)&sort=@sort ">&raquo;</a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+
+                }
+
+
+
+            </div>
+            <!-- /.col-md-9 -->
+
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#content -->
+</div>

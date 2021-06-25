@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "Thanh toán";
+    ViewBag.MetaKeyword = "Thanh toán, quần áo nữ, đầm váy, áo sơ mi, áo thun, quần các loại, thời trang nữ";
+    ViewBag.MetaDiscription = "Cảm ơn quá khách đã ủng hộ website mong quý khách thường xuyên ghé thêm website để mua các sản phầm thời trang nữ shop kinh doanh" +
+                "đủ loại gồm: đầm váy thời trang, áo sơ mi nữ, quân jean nữ, quần tây nữ, áo thun nữ giá rẻ.";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+@section JavaScriptLayout {
+
+    @Scripts.Render("~/js/shoppingcart")
+}
+
+<div id="all ">
+
+    <div id="content">
+        <div class="container">
+
+            <div class="col-md-9">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/index.html">Home</a>
+                    </li>
+                    <li>Thanh toán</li>
+                </ul>
+            </div>
+
+            <div class="col-md-9" id="checkout">
+
+                <div class="box">
+                    <form id="validationOrder">
+                        <h1>Thanh toán</h1>
+
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="firstname">Tên</label>
+                                        <input type="text" class="form-control" name="name" id="name">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="address">Địa chỉ nhận hàng</label>
+                                        <input type="text" class="form-control" name="address" id="address">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="mobile">Số điện thoại</label>
+                                        <input type="text" class="form-control" name="mobile" id="mobile">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="email" class="form-control" id="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <h4 class="col-md-12 col-sm-12">Phí vận chuyển</h4>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="city"> Chọn tỉnh/thành phố: </label>
+                                        <select style="width:150px; height:30px;text-align:center" id="CitySelectList" name="CitySelectList">
+                                            <option value="">Chọn tỉnh/TP</option>
+                                            <option value="701">TP.Hồ Chí Minh</option>
+                                            <option value="702">Khu vực khác</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div id="proviceDisplay" style="display:none" class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="city"> Chọn quận/huyện: </label>
+                                        <select style="width:150px; height:30px;text-align:center" id="DistrictSelectList" name="DistrictSelectList"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label>Phí vận chuyển: </label>
+                                    <label id="taxtransfer"></label>
+                                </div>
+                            </div>
+
+                            <!-- /.row -->
+                            <!-- /.row -->
+                        </div>
+
+                        <div class="box-footer">
+                            <div class="pull-left">
+                                <a href="/basket.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Quay lại giỏ hàng</a>
+                            </div>
+                            <div class="pull-right">
+                                <button id="gotoComfirm" class="btn btn-primary">
+                                    Thanh toán<i class="fa fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box -->
+
+
+            </div>
+            <!-- /.col-md-9 -->
+            <!-- /.col-md-3 -->
+
+        </div>
+        <!-- /.container -->
+    </div>
+</div>
+

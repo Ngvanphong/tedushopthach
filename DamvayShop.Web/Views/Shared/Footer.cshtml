@@ -1,0 +1,98 @@
+﻿@model DamvayShop.Web.Models.FooterCommon
+<div id="footer" data-animate="fadeInUp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <h4>Danh mục</h4>
+
+                <ul>
+                    @foreach (var item in Model.listCategoryProduct)
+                    {
+                        var url = "/" + item.Alias + ".pc-" + item.ID + ".html";
+                        <li>
+                            <a href="@url">@item.Name</a>
+                        </li>
+                    }
+
+                </ul>
+                <hr class="hidden-md hidden-lg hidden-sm">
+
+            </div>
+            <!-- /.col-md-3 -->
+
+
+            <div class="col-md-3 col-sm-6">
+
+                <h4>Từ khóa</h4>
+                <ul>
+                    @foreach (var item in Model.tagVm.Take(9))
+                    {
+                        var url = "/tag-" + item.ID + ".html";
+                        <li>
+                            <a href="@url">@item.Name</a>
+                        </li>
+                    }
+
+                </ul>
+
+
+            </div>
+            @if (Model.tagVm.Count() > 9)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <h4>Từ khóa</h4>
+                    <ul>
+                        @foreach (var item in Model.tagVm.Skip(9).Take(9))
+                        {
+                            var url = "/tag-" + item.ID + ".html";
+                            <li>
+                                <a href="@url">@item.Name</a>
+                            </li>
+                        }
+
+                    </ul>
+
+                </div>
+            }
+
+            <!-- /.col-md-3 -->
+
+            <div class="col-md-3 col-sm-6">
+
+                <h4>Liên hệ</h4>
+
+                <p>
+                    Tên: @Model.supportOnlineVm.Name</br>
+                    ĐT: @Model.supportOnlineVm.Mobile</br>
+                    Email: @Model.supportOnlineVm.Email</br>
+                    Skype: @Model.supportOnlineVm.Skype</br>
+                    Facebook: @Model.supportOnlineVm.Facebook.
+                </p>
+
+
+
+                <hr class="hidden-md hidden-lg">
+
+            </div>
+            <!-- /.col-md-3 -->
+            <!-- /.col-md-3 -->
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+</div>
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-3">
+            <p class="pull-left">© 2018 Nguyễn Văn Phong</p>
+
+        </div>
+        <div class="col-md-9">
+            <p class="pull-right">
+                @Html.Raw(@Model.footerVm.Content)
+            </p>
+        </div>
+    </div>
+</div>

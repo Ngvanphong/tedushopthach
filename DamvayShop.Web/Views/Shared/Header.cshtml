@@ -1,0 +1,156 @@
+﻿<!-- *** TOPBAR ***
+   _________________________________________________________ -->
+@using Microsoft.AspNet.Identity
+@model DamvayShop.Web.Models.HeaderViewModel
+
+<div id="top">
+    <div class="container">
+        <div class="col-md-12" data-animate="fadeInDown">
+            <ul class="menu">
+
+                @if (Request.IsAuthenticated)
+                {
+
+                    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @id = "frmLogout" }))
+                    {
+                        @Html.AntiForgeryToken();
+                        <li style="color:white">
+                            Xin chào: @User.Identity.Name |
+
+                            <a href="#" id="btnlogout">Đăng xuất</a> |
+
+                            <a href="/contact.html">Liên hệ</a>
+                        </li>
+
+
+                    }
+                }
+                else
+                {
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#login-modal">Đăng nhập</a>
+                    </li>
+                    <li>
+                        <a href="/register.html">Đăng ký</a>
+                    </li>
+                    <li>
+                        <a href="/contact.html">Liên hệ</a>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="Login">Đăng nhập</h4>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                    {
+
+                        @Html.AntiForgeryToken();
+
+                        <div class="form-group">
+                            @Html.TextBox("UserName", null, new { @class = "form-control", @id = "UserName" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Password("Password", null, new { @class = "form-control", @id = "Password" })
+                        </div>
+
+                        <div class="form-group">
+                            Lưu mật khẩu:   @Html.CheckBox("RememberMe")
+                        </div>
+
+                        <p class="text-center">
+                            <button class="btn btn-primary"><i class="fa fa-sign-in"></i>Đăng nhập</button>
+                        </p>
+                    }
+
+
+                    <p class="text-center text-muted">Bạn chưa có tài khoản?</p>
+                    <p class="text-center text-muted"><a href="/register.html"><strong>Đăng ký</strong></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- *** TOP BAR END *** -->
+<!-- *** NAVBAR ***
+_________________________________________________________ -->
+
+<div class="navbar navbar-default yamm" role="navigation" id="navbar">
+    <div class="container">
+        <div class="navbar-header">
+
+            <a class="navbar-brand home" href="/index.html" data-animate-hover="bounce">
+                <img src="/UploadedFiles/Avatars/logo.png" alt="DAMVAY.VN" class="hidden-xs">
+                <img src="/UploadedFiles/Avatars/logo2.png" alt="DAMVAY.VN" class="visible-xs"><span class="sr-only">damvay.vn-Trang chủ</span>
+            </a>
+            <div class="navbar-buttons">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-align-justify"></i>
+                </button>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                    <span class="sr-only">Toggle search</span>
+                    <i class="fa fa-search"></i>
+                </button>
+                <a class="btn btn-default navbar-toggle" href="/basket.html">
+                    <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs" id="countShopping">
+                        @{ if (Model.CountShopping > 0)
+                            {
+                                @Model.CountShopping;
+                            }
+                         }
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--/.navbar-header -->
+        @{Html.RenderAction("CategoryHeader", "Home");}
+        <!--/.nav-collapse -->
+
+        <div class="navbar-buttons">
+
+            <div class="navbar-collapse collapse right" id="basket-overview">
+                <a href="/basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">@{
+                    if (Model.CountShopping > 0)
+                    {
+                        @Model.CountShopping;
+                    }
+                        } </span></a>
+            </div>
+            <!--/.nav-collapse -->
+
+            <div class="navbar-collapse collapse right" id="search-not-mobile">
+                <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
+                    <span class="sr-only">Toggle search</span>
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="collapse clearfix" id="search">
+
+            <form class="navbar-form" role="search" method="get" action="/search.html">
+                <div class="input-group">
+                    <input id="keyworks" type="text" name="productName" class="form-control" placeholder="Tìm kiếm">
+                    <span class="input-group-btn">
+                        <button id="btnSearch" type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /#navbar -->
+<!-- *** NAVBAR END *** -->

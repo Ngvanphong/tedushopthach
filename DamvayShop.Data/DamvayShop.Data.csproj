@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2BD59EB4-23F8-45CE-A21D-32B0F15AAEF4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DamvayShop.Data</RootNamespace>
+    <AssemblyName>DamvayShop.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infrastructure\DbFatory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IReponsitory.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RepositotyBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\202106251002059_init.cs" />
+    <Compile Include="Migrations\202106251002059_init.Designer.cs">
+      <DependentUpon>202106251002059_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reponsitories\ErrorRepository.cs" />
+    <Compile Include="Reponsitories\FooterRepository.cs" />
+    <Compile Include="Reponsitories\FunctionRepository.cs" />
+    <Compile Include="Reponsitories\OrderDetailRepository.cs" />
+    <Compile Include="Reponsitories\OrderRepository.cs" />
+    <Compile Include="Reponsitories\OrderUserAnnoucementRepository.cs" />
+    <Compile Include="Reponsitories\PageRepository.cs" />
+    <Compile Include="Reponsitories\PermissionRepository.cs" />
+    <Compile Include="Reponsitories\PostCategoryRepository.cs" />
+    <Compile Include="Reponsitories\PostImageRepository.cs" />
+    <Compile Include="Reponsitories\PostRepository.cs" />
+    <Compile Include="Reponsitories\PostTagRepository.cs" />
+    <Compile Include="Reponsitories\ProductCategoryRepository.cs" />
+    <Compile Include="Reponsitories\ProductImageRepository.cs" />
+    <Compile Include="Reponsitories\ProductQuantityRepository.cs" />
+    <Compile Include="Reponsitories\ProductRepository.cs" />
+    <Compile Include="Reponsitories\ProductTagRepository.cs" />
+    <Compile Include="Reponsitories\SizeRepository.cs" />
+    <Compile Include="Reponsitories\SlideRepository.cs" />
+    <Compile Include="Reponsitories\SupportOnlineRepository.cs" />
+    <Compile Include="Reponsitories\SystemConfigRepository.cs" />
+    <Compile Include="Reponsitories\TagRepository.cs" />
+    <Compile Include="Reponsitories\UserRoleRepository.cs" />
+    <Compile Include="DamvayShopDbContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DamvayShop.Common\DamvayShop.Common.csproj">
+      <Project>{1c0e2d7e-f3f0-4934-9b41-ded254279efd}</Project>
+      <Name>DamvayShop.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DamvayShop.Model\DamvayShop.Model.csproj">
+      <Project>{fe353553-4360-4384-bd5e-75ba6f51de64}</Project>
+      <Name>DamvayShop.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202106251002059_init.resx">
+      <DependentUpon>202106251002059_init.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

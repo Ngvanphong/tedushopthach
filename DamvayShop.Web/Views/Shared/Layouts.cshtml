@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="google-site-verification" content="JT235G7Wys2saI0N_kqum0I2lqkPjqVkQHuHi_Z8NSY" />
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+
+    <title>
+        @ViewBag.Title
+    </title>
+    <meta name="keywords" content="@ViewBag.MetaKeyword">
+    <meta name="discription" content="@ViewBag.MetaDiscription">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+
+    @Styles.Render("~/css/base")
+    <!-- styles -->
+    @*<link href="/Assets/client/css/font-awesome.css" rel="stylesheet">
+        <link href="/Assets/client/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+        <link href="/Assets/client/css/animate.min.css" rel="stylesheet">
+        <link href="/Assets/client/css/owl.carousel.css" rel="stylesheet">
+        <link href="/Assets/client/css/owl.theme.css" rel="stylesheet">
+
+        <!-- theme stylesheet -->
+        <link href="/Assets/client/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+
+        <!-- your stylesheet with modifications -->
+        <link href="/Assets/client/css/custom.css" rel="stylesheet">
+        <link href="~/Assets/client/css/customerRe.css" rel="stylesheet" />*@
+
+    <script src="/Assets/client/js/respond.min.js"></script>
+
+    <link rel="shortcut icon" href="http://damvay.vn/favicon.ico">
+
+
+
+</head>
+
+<body>
+
+    @{ Html.RenderAction("Header", "Home");}
+
+
+
+    <div id="all">
+        @RenderBody()
+
+        <!-- /#content -->
+        <!-- *** FOOTER ***
+        _________________________________________________________ -->
+        @{Html.RenderAction("Footer", "Home");}
+        <!-- /#footer -->
+        <!-- *** FOOTER END *** -->
+        <!-- *** COPYRIGHT ***
+        _________________________________________________________ -->
+        <!-- *** COPYRIGHT END *** -->
+
+
+
+    </div>
+    <!-- /#all -->
+    <!-- *** SCRIPTS TO INCLUDE ***
+    _________________________________________________________ -->
+    @*<script src="/Assets/client/js/jquery-1.11.0.min.js"></script>
+        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/mustache.js"></script>
+        <script src="~/Scripts/numeral/numeral.min.js"></script>
+        <script src="/Assets/client/js/bootstrap.min.js"></script>
+        <script src="~/Assets/client/js/common.js"></script>
+
+        <script src="/Assets/client/js/jquery.cookie.js"></script>
+        <script src="/Assets/client/js/waypoints.min.js"></script>
+        <script src="/Assets/client/js/modernizr.js"></script>
+        <script src="/Assets/client/js/bootstrap-hover-dropdown.js"></script>
+        <script src="/Assets/client/js/owl.carousel.min.js"></script>
+        <script src="/Assets/client/js/front.js"></script>*@
+    @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/plugins")
+
+
+    @RenderSection("JavaScriptLayout", required: false)
+
+
+
+</body>
+
+</html>

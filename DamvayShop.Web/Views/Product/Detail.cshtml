@@ -1,0 +1,207 @@
+﻿@model DamvayShop.Web.Models.ProductDetailViewModel
+@{
+    ViewBag.Title = Model.ProductVm.Name;
+    ViewBag.MetaKeyword = Model.ProductVm.MetaKeyword;
+    ViewBag.MetaDiscription = Model.ProductVm.MetaDiscription;
+
+    Layout = "~/Views/Shared/Layouts.cshtml";
+    var productTags = (IEnumerable<DamvayShop.Web.Models.TagViewModel>)ViewBag.TagProducts;
+    var domainurl = "http://damvay.vn";
+    var productCategory = (DamvayShop.Model.Models.ProductCategory)ViewBag.ProductCategory;
+    var categoryUrl = "/" + productCategory.Alias + ".pc-" + productCategory.ID + ".html";
+}
+@section JavaScriptLayout {
+
+    @Scripts.Render("~/js/shoppingcart")
+}
+
+
+<div id="all">
+    <div id="content">
+        <div class="container">
+
+
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="@categoryUrl">@productCategory.Name</a>
+                    </li>
+                    <li>@Model.ProductVm.Name</li>
+                </ul>
+                <div class="row" id="productMain">
+                    <div class="col-sm-6 col-md-6 col-xs12">
+                        <div id="mainImage">
+                            <img src="@Model.ProductVm.ThumbnailImage" alt="@Model.ProductVm.Name" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="row" id="thumbs">
+                            @foreach (var item in Model.ListProductImageVm)
+                            {
+                                <div class="col-xs-4">
+                                    <a href="@item.Path" class="thumb">
+                                        <img src="@item.Path" alt="@item.Caption" class="img-responsive">
+                                    </a>
+                                </div>
+                            }
+
+                        </div>
+                        <div class="box">
+                            <h1 class="text-center">@Model.ProductVm.Name</h1>
+                            @if (productTags.Count() > 0)
+                            {
+                                <p style="text-align:center">
+                                    Tag:
+                                    @foreach (var tagitem in productTags)
+                                    {
+                                        var url = "/tag-" + tagitem.ID + ".html";
+                                        <a style="color:black" href="@url">@tagitem.Name ;</a>
+                                    }
+                                </p>
+
+                            }
+                            <p class="price" style="text-align:center">
+                                Size:
+                                <select style="width:120px;text-align:center" class="SizeSelectList" id="SizeSelectList_@(Model.ProductVm.ID)" name="SizeSelectList">
+                                    <option value="nochoice">Chọn size</option>
+                                    @foreach (var size in Model.SizeVm)
+                                    {
+                                        <option value="@size.ID">@size.Name</option>
+                                    }
+                                </select>
+
+                            </p>
+
+                            @if (Model.ProductVm.PromotionPrice.HasValue)
+                            {
+                                <p class="price">@Model.ProductVm.PromotionPrice</p>
+                            }
+                            else
+                            {
+                                <p class="price">@Model.ProductVm.Price</p>
+                            }
+
+                            <p class="text-center buttons">
+                                <a href="#" disabled="disabled" class="btn btn-primary btnshoppingCart" data-id="@Model.ProductVm.ID"><i class="fa fa-shopping-cart"></i>Mua hàng</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="box" id="details">
+
+                    <h4>Chi tiết sản phẩm</h4>
+                    <p>@Html.Raw(Model.ProductVm.Content)</p>
+
+                    <hr>
+                    <div class="social">
+                        <h4>Chia sẻ với bạn bè</h4>
+                        @{var urldetail = "/" + Model.ProductVm.Alias + ".p-" + Model.ProductVm.ID + ".html";
+                            var absoluteurl = domainurl + urldetail;
+                            var imageabsolute = domainurl + Model.ProductVm.ThumbnailImage;
+                        }
+
+                        <p>
+                            @*<div id="fb-root"></div>*@
+
+                            <a data-href="@absoluteurl" class="external facebook fb_share" data-image="@imageabsolute" data-title="@Model.ProductVm.Name"
+                               data-desc="@Model.ProductVm.Description" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
+                            <a target="_blank" class="external gplus" data-animate-hover="pulse" href="https://plus.google.com/share?url=@absoluteurl"><i class="fa fa-google-plus"></i></a>
+                            <a href="http://www.twitter.com/share?url=@absoluteurl" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
+                        </p>
+                    </div>
+
+
+
+                </div>
+                @if (Model.ListProductVm.Count() > 1)
+                {
+                    <div class="row same-height-row">
+                        <div class="col-md-12">
+                            <h3>Sản phẩm liên quan</h3>
+                        </div>
+
+
+                        @foreach (var item in Model.ListProductVm)
+                        {
+                            var url = "/" + item.Alias + ".p-" + item.ID + ".html";
+                            <div class="col-md-3 col-sm-6">
+                                <div class="product same-height">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="@url">
+                                                    <img src="@item.ThumbnailImage" alt="@item.Name" class="img-responsive">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="@url" class="invisible">
+                                        <img src="@item.ThumbnailImage" alt="" class="img-responsive">
+                                    </a>
+                                    <div class="text">
+                                        <h3>@item.Name</h3>
+                                        @if (item.PromotionPrice.HasValue)
+                                        {
+                                            <p class="price"><del>@item.Price</del>@item.PromotionPrice</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="price">@item.Price</p>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <!-- /.product -->
+                    </div>
+                }
+
+            </div>
+            <!-- /.col-md-9 -->
+        </div>
+        <!-- /.container -->
+    </div>
+</div>
+
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '2145040729051258',
+            status: true,
+            cookie: true,
+            xfbml: true
+        });
+    };
+
+    (function (d, debug) { var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0]; if (d.getElementById(id)) { return; } js = d.createElement('script'); js.id = id; js.async = true; js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js"; ref.parentNode.insertBefore(js, ref); }(document, /*debug*/ false));
+
+    function postToFeed(title, desc, url, image) {
+        var obj = { method: 'feed', link: url, picture: image, name: title, description: desc };
+        function callback(response) { }
+        FB.ui(obj, callback);
+    }
+
+    var fbShareBtn = document.querySelector('.fb_share');
+    fbShareBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var title = fbShareBtn.getAttribute('data-title'),
+            desc = fbShareBtn.getAttribute('data-desc'),
+            url = fbShareBtn.getAttribute('data-href'),
+            image = fbShareBtn.getAttribute('data-image');
+        postToFeed(title, desc, url, image);
+
+        return false;
+    });
+</script>
+
+
+
+

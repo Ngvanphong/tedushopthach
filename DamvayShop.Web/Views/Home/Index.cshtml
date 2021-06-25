@@ -1,0 +1,191 @@
+﻿@model DamvayShop.Web.Models.IndexViewModel
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.MetaKeyword = Model.MetaKeyword;
+    ViewBag.MetaDiscription = Model.MetaDiscription;
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+
+
+<div id="content">
+
+    <div class="container">
+        <div class="col-md-12">
+            <div id="main-slider">
+                @foreach (var item in Model.slideVm)
+                {
+
+
+                    <div class="item">
+                        <a href="@item.URL">
+
+                            <img src="@item.Image" alt="@item.Name" class="img-responsive">
+                            <div id="FirstLetter" style="position:absolute; top:0%; right:5% "><h3><p style="font-style:italic">@item.Content</p></h3></div>
+                        </a>
+
+                    </div>
+
+                }
+
+            </div>
+            <!-- /#main-slider -->
+        </div>
+    </div>
+
+
+
+    <!-- *** HOT PRODUCT SLIDESHOW ***
+    _________________________________________________________ -->
+    <div id="hot">
+        <div class="box">
+            <div class="container">
+                <div class="col-md-12">
+                    <h2>Sản phẩm nổi bật</h2>
+                    <p style="text-align:center" class="loadMore">
+                        <a href="/hotproduct.html" class="btn btn-primary">Tất cả</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="product-slider" style="margin-bottom:-20px">
+                @foreach (var item in Model.productHotVm)
+                {
+                    var url = "/" + item.Alias + ".p-" + item.ID + ".html";
+                    <div class="item">
+                        <div class="product">
+                            <div class="flip-container">
+                                <div class="flipper">
+                                    <div class="front">
+                                        <a href="@url">
+                                            <img src="@item.ThumbnailImage" alt="@item.Name" class="img-responsive">
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <a href="@url" class="invisible">
+                                <img src="@item.ThumbnailImage" alt="@item.Name" class="img-responsive">
+                            </a>
+                            <div class="text">
+                                <h3><a href="@url">@item.Name</a></h3>
+                                @if (item.PromotionPrice.HasValue == true)
+                                {
+                                    <p class="price"><del>@item.Price</del> @item.PromotionPrice</p>
+                                    <div class="ribbon sale">
+                                        <div class="theribbon">SALE</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <p class="price">@item.Price</p>
+                                }
+
+                            </div>
+                            <!-- /.text -->
+                            <!-- /.ribbon -->
+
+                        </div>
+                        <!-- /.product -->
+                    </div>
+                }
+
+                <!-- /.col-md-4 -->
+
+            </div>
+            <!-- /.product-slider -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#hot -->
+    <!-- *** HOT END *** -->
+    <!-- *** HOT PRODUCT SLIDESHOW ***
+    _________________________________________________________ -->
+    <div id="hot">
+        <div class="container">
+            <div class="col-md-12" style="text-align: center">
+                <h2>Sản phẩm khuyến mãi</h2>
+                <p class="loadMore">
+                    <a href="/promotion-product.html" class="btn btn-primary">Tất cả</a>
+                </p>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="product-slider">
+
+                @foreach (var item in Model.productPromotionVm)
+                {
+                    var url = "/" + item.Alias + ".p-" + item.ID + ".html";
+                    <div class="item">
+                        <div class="product">
+                            <div class="flip-container">
+                                <div class="flipper">
+                                    <div class="front">
+                                        <a href="@url">
+                                            <img src="@item.ThumbnailImage" alt="@item.Name" class="img-responsive">
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <a href="@url" class="invisible">
+                                <img src="@item.ThumbnailImage" alt="@item.Name" class="img-responsive">
+                            </a>
+                            <div class="text">
+                                <h3><a href="@url">@item.Name</a></h3>
+                                <p class="price"><del>@item.Price</del> @item.PromotionPrice</p>
+                            </div>
+                            <!-- /.text -->
+                            <!-- /.ribbon -->
+                        </div>
+                        <!-- /.product -->
+                    </div>
+                }
+
+
+
+            </div>
+
+
+            <!-- /.product-slider -->
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /#hot -->
+    <!-- *** HOT END *** -->
+    <!-- *** GET INSPIRED ***
+    _________________________________________________________ -->
+    <div class="container" data-animate="fadeInUpBig">
+        <div class="col-md-12">
+            <div class="box slideshow">
+                <h3>Blog</h3>
+
+                <div id="get-inspired" class="owl-carousel owl-theme">
+                    @foreach (var item in Model.postVm)
+                    {
+                        var url = "/blog-detail.html" + "?postid=" + item.ID;
+                        <div class="item">
+                            <a href="@url">
+                                <img src="@item.Image" alt="@item.Name" class="img-responsive">
+                                <div style="position:absolute; top:0%; right:5% "><h3><i style="font-size:18px">@item.Name</i></h3></div>
+                            </a>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- *** GET INSPIRED END *** -->
+
+
+
+
+</div>

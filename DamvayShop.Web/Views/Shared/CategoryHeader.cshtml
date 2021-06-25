@@ -1,0 +1,98 @@
+﻿
+@model DamvayShop.Web.Models.CategoryHeaderViewModel
+<div class="navbar-collapse collapse" id="navigation">
+
+    <ul class="nav navbar-nav navbar-left">
+        <li>
+            <a href="/index.html">Trang chủ</a>
+        </li>
+
+        @foreach (var item in Model.productCategoryVm.Where(x => x.ParentID == null))
+        {
+            IEnumerable<DamvayShop.Web.Models.ProductCategoryViewModel> listChild = Model.productCategoryVm.Where(x => x.ParentID == item.ID);
+
+            if (listChild.Count() == 0)
+            {
+                var url = "/" + item.Alias + ".pc-" + item.ID + ".html";
+                <li>
+                    <a href="@url">@item.Name</a>
+                </li>
+            }
+            else
+            {
+                <li class="dropdown yamm-fw">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">@item.Name <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="yamm-content">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <ul>
+                                            @foreach (var child in listChild)
+                                            {
+                                                var url = "/" + child.Alias + ".pc-" + child.ID + ".html";
+                                                <li>
+                                                    <a href="@url">@child.Name</a>
+                                                </li>
+                                            }
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.yamm-content -->
+                        </li>
+                    </ul>
+                </li>
+
+
+            }
+        }
+
+        @foreach (var item in Model.postCategoryVm.Where(x => x.ParentID == null))
+        {
+            IEnumerable<DamvayShop.Web.Models.PostCategoryViewModel> listChild = Model.postCategoryVm.Where(x => x.ParentID == item.ID);
+
+            if (listChild.Count() == 0)
+            {
+                var url = "/" + item.Alias + ".blog-" + item.ID + ".html";
+                <li>
+                    <a href="@url">@item.Name</a>
+                </li>
+            }
+            else
+            {
+                <li class="dropdown yamm-fw">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">@item.Name <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="yamm-content">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <ul>
+                                            @foreach (var child in listChild)
+                                            {
+                                                var url = "/" + child.Alias + ".blog-" + child.ID + ".html";
+                                                <li>
+                                                    <a href="@url">@child.Name</a>
+                                                </li>
+                                            }
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.yamm-content -->
+                        </li>
+                    </ul>
+                </li>
+
+
+            }
+        }
+
+
+    </ul>
+</div>

@@ -1,0 +1,115 @@
+﻿@model DamvayShop.Web.Models.SupportOnlineViewModel
+@{
+    ViewBag.Title = "Liên hệ";
+    ViewBag.MetaKeyword = "Liên hệ shop, thời trang nữ online, thời trang nữ 24h, thời trang nữ giá rẻ," +
+                " thời trang trẻ dành cho nữ, thời trang nữ trung niên,thời trang nữ xinh";
+    ViewBag.MetaDiscription = "Quý khách có bất cứ thắc mắc nào xin liên hệ Shop ,Shop sẽ hỗ trợ mọi thắc mắc của quý khách," +
+                " để mang lại những sản phầm thời trang chất lượng nhất cho các chị em.";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+
+<div id="all">
+
+    <div id="content">
+        <div class="container">
+
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/index.html">Home</a>
+                    </li>
+                    <li>Liên hệ</li>
+                </ul>
+
+            </div>
+
+            <div class="col-md-12">
+
+                <div class="box" id="contact">
+                    <h1>Liên hệ</h1>
+
+                    <p class="lead">Cảm ơn quý khách đã ghé thăm WebSite. Nếu quý khách có bất cứ thắc mắc nào xin liên hệ địa chỉ bên dưới?</p>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h3><i class="fa fa-map-marker"></i>Địa chỉ</h3>
+                            <p>
+                                Nguyễn Xí, Phường 26, Quận Bình Thạnh, TP.Hồ Chí Minh.
+                            </p>
+                        </div>
+                        <!-- /.col-sm-4 -->
+                        <div class="col-sm-4">
+                            <h3><i class="fa fa-phone"></i> Điện thoại</h3>
+                            <p>
+                                @{ var nameP = Model.Name.Substring(Model.Name.LastIndexOf(" ") + 1);}
+                                <strong>@nameP: @Model.Mobile</strong>
+                            </p>
+                        </div>
+                        <!-- /.col-sm-4 -->
+                        <div class="col-sm-4">
+                            <h3><i class="fa fa-envelope"></i>Hỗ trợ trực tuyến</h3>
+                            <ul>
+                                <li>
+                                    <strong>Tên: @Model.Name</strong>
+                                </li>
+                                <li>
+                                    <strong>Email: @Model.Email</strong>
+                                </li>
+                                <li>
+                                    <strong>Skype: @Model.Skype</strong>
+                                </li>
+                                <li>
+                                    <strong>Facebook: @Model.Facebook</strong>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- /.col-sm-4 -->
+                    </div>
+                    <!-- /.row -->
+
+                    <hr>
+
+                    <div id="map">
+
+                    </div>
+
+                    <hr>
+
+                </div>
+
+
+            </div>
+            <!-- /.col-md-9 -->
+        </div>
+        <!-- /.container -->
+    </div>
+</div>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYMX_Li2zERYJmlzkcARfTAnOXSpp1IJU&callback=initialize">
+</script>
+<script>
+    function initialize() {
+        var mapOptions = {
+            zoom: 15,
+            center: new google.maps.LatLng(10.816749, 106.707423),
+            mapTypeId: google.maps.MapTypeId.ROAD,
+            scrollwheel: false
+        }
+        var map = new google.maps.Map(document.getElementById('map'),
+            mapOptions);
+
+        var myLatLng = new google.maps.LatLng(10.816749, 106.707423);
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map
+        });
+
+    }
+</script>
+
+

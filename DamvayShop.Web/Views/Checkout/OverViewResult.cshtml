@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Xem lại đơn hàng";
+    ViewBag.MetaKeyword = "Xem lại đơn hàng, áo sơ mi nữ đẹp, áo thun nữ, quần tây nữ , quần jean nữ, dầm váy, dam vay";
+    ViewBag.MetaDiscription = "Quý khách xem lại đơn hàng quần áo trước khi thanh toán, Sản phầm thời trang của shop sẽ luôn được cập nhật mới nhất với đầy" +
+                "đủ chủng loại: đầm váy , áo sơ mi , áo thun, quần jean, quần tây,...";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+    var totalPayment = (decimal)ViewBag.totalPrice;
+    var transferTax = (string)ViewBag.transferTax;
+}
+
+@section JavaScriptLayout {
+
+    @Scripts.Render("~/js/shoppingcart")
+}
+
+
+<div id="all">
+
+    <div id="content">
+        <div class="container">
+
+            <div class="col-md-12">
+
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+
+                    <li>Xác nhận</li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-md-12" id="customer-order">
+                <div class="box">
+                    <h1>Hóa đơn</h1>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Sản phẩm</th>
+                                    <th>Size</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá</th>
+                                    <th>Giá khuyến mãi</th>
+                                    <th>Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody id="shopingContent"></tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="6" class="text-right">Tổng tiền:</th>
+                                    <th id="totalPriceShopping"></th>
+                                </tr>
+                                <tr>
+                                    <th colspan="6" class="text-right">Phí vận chuyển:</th>
+                                    <th id="totalPriceTransfer">@transferTax</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="6" class="text-right">Tổng tiền cần thanh toán:</th>
+                                    <th id="totalPricePaymentOrder">@totalPayment</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                    <!-- /.table-responsive -->
+                    <div class="box-footer">
+                        <div class="pull-left">
+                            <a href='/basket.html' class="btn btn-default"><i class="fa fa-chevron-left"></i>Quay lại giỏ hàng</a>
+                        </div>
+                        <div class="pull-right">
+                            <a class="btn btn-primary" id="createOrder"> Xác nhận <i class="fa fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+    </div>
+</div>
+
+<script id="tmpShoppingContent" type="x-tmpl-mustache">
+    <tr>
+        <td>
+            <img src="{{Image}}" alt="{{Name}}">
+        </td>
+        <td>
+            {{Name}}
+        </td>
+        <td data-id="{{ProductId}}" class="txtSizeShopping">
+            {{Size}}
+        </td>
+
+        <td><input type="number" data-size="{{Size}}" data-price="{{salePrice}}" data-id="{{ProductId}}" value="{{Quantity}}" disabled class="form-control txtKeyupQuantity" /></td>
+        <td>{{PriceF}}</td>
+        <td>{{PromotionPrice}}</td>
+        <td id="amount_{{ProductId}}_{{Size}}">{{Amount}}</td>
+
+    </tr>
+</script>
+
+

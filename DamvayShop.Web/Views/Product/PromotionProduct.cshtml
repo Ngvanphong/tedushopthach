@@ -1,0 +1,129 @@
+﻿
+@model DamvayShop.Web.Infrastructure.Core.PaginationClient<DamvayShop.Web.Models.ProductViewModel>
+@{
+    var pageIndex = Model.PageIndex;
+    ViewBag.Title = pageIndex == 1 ? "Sản phầm khuyến mãi" : "Sản phẩm khyến mãi-trang=" + pageIndex;
+    ViewBag.MetaKeyword = pageIndex == 1 ? "Thời trang nữ khuyến mãi" : "Thời trang nữ khuyến mãi-trang=" + pageIndex;
+    ViewBag.MetaDiscription = pageIndex == 1 ? "Các sản phẩm thời trang nữ khuyến mãi hàng tuần" : "Các sản phẩm thời trang nữ khuyến mãi hàng tuần=" + pageIndex;
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+<div id="all">
+    <div id="content">
+        <div class="container">
+
+            <div class="col-md-12">
+
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/index.html">Home</a>
+                    </li>
+                    <li>Sản phẩm khuyến mãi</li>
+                </ul>
+
+
+                <div id="productSort" class="row products">
+                    @if (@Model.Count > 0)
+                    {
+                        foreach (var item in Model.Items)
+                        {
+                            var url = "/" + item.Alias + ".p-" + item.ID + ".html";
+                            <div class="col-md-3 col-sm-4">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="@url">
+                                                    <img src="@item.ThumbnailImage" alt="@item.Name" class="img-responsive">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="@url" class="invisible">
+                                        <img src="@item.ThumbnailImage" alt="" class="img-responsive">
+                                    </a>
+                                    <div class="text">
+                                        <h3><a href="@url">@item.Name</a></h3>
+
+                                        <p class="price"><del>@item.Price</del>@item.PromotionPrice</p>
+
+                                    </div>
+                                    <!-- /.text -->
+
+                                    <div class="ribbon sale">
+                                        <div class="theribbon">SALE</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+
+                                    <!-- /.ribbon -->
+
+                                </div>
+                                <!-- /.product -->
+                            </div>
+                        }
+
+                    }
+                    else
+                    {
+                        <div class="text-center"><h3>Không có sản phẩm</h3></div>;
+
+                    }
+
+
+                </div>
+                <!-- /.products -->
+                @if (Model.TotalPage > 1)
+                {
+                    var startPageIndex = Math.Max(1, Model.PageIndex - Model.PageDisplay / 2);
+                    var endPageIndex = Math.Min(Model.TotalPage, Model.PageIndex + Model.PageDisplay / 2);
+                    <div class="pages">
+
+                        <ul class="pagination">
+                            @if (Model.PageIndex > 1)
+                            {
+                                <li>
+                                    <a href="?page=@(Model.PageIndex - 1)">&laquo;</a>
+                                </li>
+                            }
+
+                            @for (int i = startPageIndex; i <= endPageIndex; i++)
+                            {
+                                if (i == Model.PageIndex)
+                                {
+                                    <li class="active">
+                                        <a href="?page=@i">@i</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="?page=@i">@i</a>
+                                    </li>
+                                }
+
+                            }
+
+                            @if (Model.PageIndex < Model.TotalPage)
+                            {
+                                <li>
+                                    <a href="?page=@(Model.PageIndex + 1)">&raquo;</a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+
+                }
+
+
+
+            </div>
+            <!-- /.col-md-9 -->
+
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#content -->
+    </div>
+
+
