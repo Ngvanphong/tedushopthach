@@ -321,6 +321,7 @@
     <Content Include="Assets\client\css\style.mono.css" />
     <Content Include="Assets\client\css\style.pink.css" />
     <Content Include="Assets\client\css\style.violet.css" />
+    <Content Include="Assets\client\css\zalo.css" />
     <Content Include="Assets\client\img\AjaxLoader.gif" />
     <Content Include="Assets\client\img\banner.jpg" />
     <Content Include="Assets\client\img\banner2.jpg" />
@@ -372,6 +373,7 @@
     <Content Include="Assets\client\js\Sort.js" />
     <Content Include="Assets\client\js\waypoints.min.js" />
     <Content Include="Assets\client\xml\Provinces_HCM.xml" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -477,6 +479,8 @@
     <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\Checkout\OverViewResult.cshtml" />
     <Content Include="Views\Shared\CategoryHeader.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

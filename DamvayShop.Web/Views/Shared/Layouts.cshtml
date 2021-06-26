@@ -33,8 +33,13 @@
     <script src="/Assets/client/js/respond.min.js"></script>
 
     <link rel="shortcut icon" href="http://damvay.vn/favicon.ico">
-
-
+    <link href="~/Assets/client/css/zalo.css" rel="stylesheet" />
+    <style>
+        .zalo-chat-widget {
+            bottom: 20px !important;
+            left: 20px !important;
+        }
+    </style>
 
 </head>
 
@@ -60,6 +65,28 @@
 
 
     </div>
+
+
+
+    <div class="float-contact">
+        <button class="chat-zalo">
+            <a href="http://zalo.me/0374130350">Zalo</a>
+        </button>
+    </div>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/60d6a04c7f4b000ac039a11e/1f9364bgg';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
     <!-- /#all -->
     <!-- *** SCRIPTS TO INCLUDE ***
     _________________________________________________________ -->
@@ -82,6 +109,8 @@
 
 
     @RenderSection("JavaScriptLayout", required: false)
+
+
 
 
 
