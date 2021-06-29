@@ -86,7 +86,7 @@ namespace DamvayShop.Service
 
         public IEnumerable<ProductCategory> GetAll()
         {
-            return _productCategoryRepository.GetAll();
+            return _productCategoryRepository.GetAll().OrderBy(x => x.ParentID); 
         }
     }
 }
