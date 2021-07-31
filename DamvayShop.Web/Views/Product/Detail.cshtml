@@ -6,7 +6,7 @@
 
     Layout = "~/Views/Shared/Layouts.cshtml";
     var productTags = (IEnumerable<DamvayShop.Web.Models.TagViewModel>)ViewBag.TagProducts;
-    var domainurl = "http://damvay.vn";
+    var domainurl = "https://dreamyfashion.vn";
     var productCategory = (DamvayShop.Model.Models.ProductCategory)ViewBag.ProductCategory;
     var categoryUrl = "/" + productCategory.Alias + ".pc-" + productCategory.ID + ".html";
 }
@@ -99,24 +99,6 @@
                     <p>@Html.Raw(Model.ProductVm.Content)</p>
 
                     <hr>
-                    <div class="social">
-                        <h4>Chia sẻ với bạn bè</h4>
-                        @{var urldetail = "/" + Model.ProductVm.Alias + ".p-" + Model.ProductVm.ID + ".html";
-                            var absoluteurl = domainurl + urldetail;
-                            var imageabsolute = domainurl + Model.ProductVm.ThumbnailImage;
-                        }
-
-                        <p>
-                            @*<div id="fb-root"></div>*@
-
-                            <a data-href="@absoluteurl" class="external facebook fb_share" data-image="@imageabsolute" data-title="@Model.ProductVm.Name"
-                               data-desc="@Model.ProductVm.Description" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
-                            <a target="_blank" class="external gplus" data-animate-hover="pulse" href="https://plus.google.com/share?url=@absoluteurl"><i class="fa fa-google-plus"></i></a>
-                            <a href="https://twitter.com/share?url=@absoluteurl" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
-                        </p>
-                    </div>
-
-
 
                 </div>
                 @if (Model.ListProductVm.Count() > 1)
@@ -171,36 +153,6 @@
     </div>
 </div>
 
-<script>
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '2145040729051258',
-            status: true,
-            cookie: true,
-            xfbml: true
-        });
-    };
-
-    (function (d, debug) { var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0]; if (d.getElementById(id)) { return; } js = d.createElement('script'); js.id = id; js.async = true; js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js"; ref.parentNode.insertBefore(js, ref); }(document, /*debug*/ false));
-
-    function postToFeed(title, desc, url, image) {
-        var obj = { method: 'feed', link: url, picture: image, name: title, description: desc };
-        function callback(response) { }
-        FB.ui(obj, callback);
-    }
-
-    var fbShareBtn = document.querySelector('.fb_share');
-    fbShareBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        var title = fbShareBtn.getAttribute('data-title'),
-            desc = fbShareBtn.getAttribute('data-desc'),
-            url = fbShareBtn.getAttribute('data-href'),
-            image = fbShareBtn.getAttribute('data-image');
-        postToFeed(title, desc, url, image);
-
-        return false;
-    });
-</script>
 
 
 

@@ -35,7 +35,7 @@ h1 {
 }
 @media (max-width: 991px) {
   #top {
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
   }
 }
@@ -46,7 +46,7 @@ h1 {
   padding-top: 5px;
   margin: 0;
   text-align: right;
-  font-size: 12px;
+  font-size: 14px;
   list-style: none;
 }
 @media (max-width: 991px) {
@@ -1597,7 +1597,7 @@ ol {
   }
 }
 .text-small {
-  font-size: 12px;
+  font-size: 14px;
 }
 .text-large {
   font-size: 18px;

@@ -85,8 +85,8 @@
 
 .fcta-zalo-vi-tri-nut {
     position: fixed;
-    bottom: 24px;
-    right: 20px;
+    bottom: 50px;
+    left: 50px;
     z-index: 999
 }
 
@@ -224,13 +224,6 @@ to {
 
 .fcta-zalo-ben-trong-nut svg path {
     fill: #fff
-}
-
-.fcta-zalo-vi-tri-nut {
-    position: fixed;
-    bottom: 24px;
-    right: 20px;
-    z-index: 999
 }
 
 .fcta-zalo-nen-nut, div.fcta-zalo-mess {

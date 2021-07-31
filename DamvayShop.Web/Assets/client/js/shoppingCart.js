@@ -109,7 +109,7 @@
         });
        
 
-        $(".txtKeyupQuantity").off('keyup').on('keyup', function (e) {
+        $(".txtKeyupQuantity").off('change').on('change', function (e) {
             e.preventDefault();
             var salePrice = parseInt($(this).data('price'));
             var quantity = parseInt($(this).val());

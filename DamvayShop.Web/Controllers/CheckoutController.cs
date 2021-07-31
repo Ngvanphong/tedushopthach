@@ -52,18 +52,18 @@ namespace DamvayShop.Web.Controllers
 
         public JsonResult GetTaxHCM(int districtId) { 
   
-            string taxTransfar="12.000";
-            List<int> listOutsiteDistrict = new List<int>()
-            {
-                70139,70143,70135,70137,70141,70134,70133
-            };
-            foreach(var item in listOutsiteDistrict)
-            {              
-                if (item == districtId)
-                {
-                    taxTransfar = "14.000";
-                }               
-            }           
+            string taxTransfar="30.000";
+            //List<int> listOutsiteDistrict = new List<int>()
+            //{
+            //    70139,70143,70135,70137,70141,70134,70133
+            //};
+            //foreach(var item in listOutsiteDistrict)
+            //{              
+            //    if (item == districtId)
+            //    {
+            //        taxTransfar = "14.000";
+            //    }               
+            //}           
             return Json(new
             {
                 status = true,
